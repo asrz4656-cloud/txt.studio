@@ -6,8 +6,6 @@ const state = {
   theme: 'light',
   font: 'inter',
   fontSize: 16,
-  adsClient: '',
-  adsSlot: '',
 };
 
 const templates = {
@@ -77,10 +75,7 @@ function applyStateToUI() {
   $('#editor').classList.toggle('mono', state.font === 'mono');
   $('#editor').classList.toggle('inter', state.font === 'inter');
   $('#editor').style.fontSize = `${state.fontSize}px`;
-  $('#adsClient').value = state.adsClient || '';
-  $('#adsSlot').value = state.adsSlot || '';
   updateStats();
-  setupAdSense();
 }
 
 function updateStats() {
@@ -182,35 +177,6 @@ function applyTemplate() {
   saveToStorage();
 }
 
-function setupAdSense() {
-  const ins = document.querySelector('ins.adsbygoogle');
-  const fallback = document.querySelector('.ads-fallback');
-  if (!ins) return;
-  ins.setAttribute('data-ad-client', state.adsClient || '');
-  ins.setAttribute('data-ad-slot', state.adsSlot || '');
-  if (state.adsClient) {
-    const existing = document.querySelector('script[data-adsense="true"]');
-    if (!existing) {
-      const s = document.createElement('script');
-      s.async = true;
-      s.setAttribute('data-adsense', 'true');
-      s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(state.adsClient)}`;
-      s.crossOrigin = 'anonymous';
-      s.onload = () => {
-        try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch {}
-      };
-      s.onerror = () => {
-        fallback.style.display = 'block';
-      };
-      document.head.appendChild(s);
-    } else {
-      try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch {}
-    }
-    fallback.style.display = 'none';
-  } else {
-    fallback.style.display = 'block';
-  }
-}
 
 let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -254,13 +220,6 @@ function setupEvents() {
     state.fontSize = +e.target.value;
     $('#editor').style.fontSize = `${state.fontSize}px`;
     saveToStorageDebounced();
-  });
-  $('#saveAds').addEventListener('click', () => {
-    state.adsClient = $('#adsClient').value.trim();
-    state.adsSlot = $('#adsSlot').value.trim();
-    saveToStorage();
-    setupAdSense();
-    toast('Configuración de anuncios guardada');
   });
 
   document.addEventListener('keydown', (e) => {

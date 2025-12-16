@@ -1,10 +1,10 @@
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `txt-studio-${CACHE_VERSION}`;
 const ASSETS = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/app.js',
+  '/styles.css?v=2',
+  '/app.js?v=2',
   '/manifest.json',
   '/assets/logo.svg',
 ];

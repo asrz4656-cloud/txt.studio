@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/styles.css?v=2" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3982673279929067" crossorigin="anonymous"></script>
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
@@ -85,18 +86,6 @@
           <button id="applyTemplate" class="btn slim">Aplicar</button>
         </section>
 
-        <section class="panel">
-          <h3>Anuncios</h3>
-          <div class="field">
-            <input id="adsClient" placeholder="Tu AdSense client (ej: ca-pub-xxxxxxxx)" />
-          </div>
-          <div class="field">
-            <input id="adsSlot" placeholder="Ad slot (ej: 1234567890)" />
-          </div>
-          <button id="saveAds" class="btn slim">Guardar configuración</button>
-          <p class="muted">Los anuncios requieren aprobación de AdSense y dominio público.</p>
-        </section>
-
         <section class="panel love">
           <p>Hecho con 💖 para que publiques hoy mismo</p>
         </section>
@@ -116,11 +105,11 @@
         <div class="ads">
           <ins class="adsbygoogle"
                style="display:block"
-               data-ad-client=""
+               data-ad-client="ca-pub-3982673279929067"
                data-ad-slot=""
                data-ad-format="auto"
                data-full-width-responsive="true"></ins>
-          <div class="ads-fallback">Espacio publicitario</div>
+          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
         </div>
       </section>
     </main>
@@ -131,7 +120,7 @@
       <a href="#" id="installPWA" class="btn slim">Instalar</a>
     </footer>
 
-    <script src="/app.js" type="module"></script>
+    <script src="/app.js?v=2" type="module"></script>
   </body>
 </html>
 
