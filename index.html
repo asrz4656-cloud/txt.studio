@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta name="description" content="Editor y generador de archivos .txt online. Rápido, bonito y sin backend." />
+    <title>TXT Studio — Editor .txt online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/assets/logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="bg-noise"></div>
+    <header class="app-header">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.svg" alt="TXT Studio" />
+        <div class="titles">
+          <h1>TXT Studio</h1>
+          <p class="sub">Genera, edita y descarga .txt — todo en tu navegador</p>
+        </div>
+      </div>
+      <nav class="actions">
+        <button id="newBtn" class="btn primary">Nuevo</button>
+        <label class="btn">
+          Abrir <input id="openInput" type="file" accept=".txt,text/plain" hidden />
+        </label>
+        <button id="saveBtn" class="btn">Guardar</button>
+        <button id="shareBtn" class="btn">Compartir enlace</button>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <section class="panel">
+          <h3>Documento</h3>
+          <input id="titleInput" class="title-input" placeholder="Sin título.txt" />
+          <div class="stats">
+            <span id="charCount">0 caracteres</span>
+            <span id="wordCount">0 palabras</span>
+            <span id="lineCount">0 líneas</span>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Apariencia</h3>
+          <div class="field">
+            <label class="switch">
+              <input id="themeToggle" type="checkbox" />
+              <span>Modo oscuro</span>
+            </label>
+          </div>
+          <div class="field">
+            <label>Fuente</label>
+            <select id="fontSelect">
+              <option value="inter">Inter (proporcional)</option>
+              <option value="mono">JetBrains Mono (monoespaciada)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tamaño</label>
+            <input id="fontSize" type="range" min="12" max="28" value="16" />
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Plantillas</h3>
+          <select id="templateSelect">
+            <option value="">Selecciona una plantilla…</option>
+            <option value="notes">Notas rápidas</option>
+            <option value="todo">Lista de tareas</option>
+            <option value="meeting">Minuta de reunión</option>
+            <option value="journal">Entrada de diario</option>
+          </select>
+          <button id="applyTemplate" class="btn slim">Aplicar</button>
+        </section>
+
+        <section class="panel">
+          <h3>Anuncios</h3>
+          <div class="field">
+            <input id="adsClient" placeholder="Tu AdSense client (ej: ca-pub-xxxxxxxx)" />
+          </div>
+          <div class="field">
+            <input id="adsSlot" placeholder="Ad slot (ej: 1234567890)" />
+          </div>
+          <button id="saveAds" class="btn slim">Guardar configuración</button>
+          <p class="muted">Los anuncios requieren aprobación de AdSense y dominio público.</p>
+        </section>
+
+        <section class="panel love">
+          <p>Hecho con 💖 para que publiques hoy mismo</p>
+        </section>
+      </aside>
+
+      <section class="editor-area">
+        <div id="dropZone" class="drop-zone">Arrastra aquí tu .txt para abrir</div>
+
+        <textarea id="editor" spellcheck="false" placeholder="Escribe tu contenido aquí…"></textarea>
+
+        <div class="toolbar">
+          <div class="kbd">Ctrl/⌘+S guardar</div>
+          <div class="kbd">Ctrl/⌘+N nuevo</div>
+          <div class="kbd">Ctrl/⌘+O abrir</div>
+        </div>
+
+        <div class="ads">
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client=""
+               data-ad-slot=""
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <div class="ads-fallback">Espacio publicitario</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>TXT Studio © 2025</span>
+      <span>Hecho con 💖 — Sin backend, 100% cliente</span>
+      <a href="#" id="installPWA" class="btn slim">Instalar</a>
+    </footer>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
+
